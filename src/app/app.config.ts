@@ -7,6 +7,7 @@ import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { groceryReducer } from './store/reducers/grocery.reducer';
 import { bucketReducer } from './store/reducers/bucket.reducer';
+import { GroceryEffects } from './store/effects/grocery.effect';
 
 
 export const appConfig: ApplicationConfig = {
@@ -18,7 +19,9 @@ export const appConfig: ApplicationConfig = {
       groceries: groceryReducer,
       bucket: bucketReducer
     }),
-    provideEffects(),
+    provideEffects(
+      GroceryEffects
+    ),
     provideStoreDevtools({
 
     })

@@ -7,14 +7,12 @@ export const selectGroceries = createFeatureSelector<Grocery[]>('groceries');
 
 export const selectFruitGroceries = createSelector(
     selectGroceries, (state) => {
-        console.log("performing operation")
         return state.filter(item => item.type == 'fruit');
     }
 )
 
 export const selectGroceriesByType = (type: string) => createSelector(
     selectGroceries, (state) => {
-        console.log("performing operation")
         return state.filter(item => item.type == type)
     }
 )
