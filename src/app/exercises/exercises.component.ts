@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-exercises',
   standalone: true,
-  imports: [],
+  imports: [RouterOutlet, RouterModule],
   templateUrl: './exercises.component.html',
   styleUrl: './exercises.component.css'
 })
