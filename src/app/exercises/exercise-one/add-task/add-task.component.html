@@ -1,0 +1,14 @@
+<header>
+    <h1> Add Task </h1>
+    <hr>
+    <br>
+</header>
+<section>
+    <form (submit)="addTask()">
+        <input class="add-task" type="text" name="taskName" id="taskName" [(ngModel)]="taskName"
+            placeholder="Enter Task Name">
+        <br>
+        <br>
+        <button type="submit">Add Task</button>
+    </form>
+</section>

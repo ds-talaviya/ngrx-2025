@@ -8,6 +8,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { groceryReducer } from './store/reducers/grocery.reducer';
 import { bucketReducer } from './store/reducers/bucket.reducer';
 import { GroceryEffects } from './store/effects/grocery.effect';
+import { taskReducer } from './exercises/exercise-one/store/task.reducer';
 
 
 export const appConfig: ApplicationConfig = {
@@ -17,7 +18,8 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideStore({
       groceries: groceryReducer,
-      bucket: bucketReducer
+      bucket: bucketReducer,
+      task: taskReducer
     }),
     provideEffects(
       GroceryEffects

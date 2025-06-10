@@ -1,0 +1,22 @@
+.type-select {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+table {
+    text-align: left;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td,
+th {
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table tr th {
+    background-color: #f2f2f2;
+}

@@ -1,0 +1,14 @@
+.components-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 2.5rem;
+}
+
+app-add-task {
+    width: 40%;
+}
+
+app-task-list {
+    width: 60%;
+}

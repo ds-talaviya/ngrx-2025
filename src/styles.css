@@ -8,3 +8,14 @@
     box-sizing: border-box;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+
+input,
+select {
+    padding: 0.25rem 0.5rem;
+}
+
+button {
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+}

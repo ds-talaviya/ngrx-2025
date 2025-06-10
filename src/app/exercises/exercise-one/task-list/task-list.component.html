@@ -1,0 +1,38 @@
+<header>
+    <h1> Task List </h1>
+    <hr>
+    <br>
+</header>
+<section>
+    <div class="container">
+        <select (change)="onTypeChange($event)" class="type-select">
+            <option value="">Select type</option>
+            <option value="">All</option>
+            <option value="completed">Completed</option>
+            <option value="pending">Pending</option>
+        </select>
+        <table>
+            <tr>
+                <th style="width: 10%">#</th>
+                <th style="width: 10%">Complete</th>
+                <th style="width: 70%">Name</th>
+                <th style="width: 10%">Action</th>
+            </tr>
+            @for (task of (filteredTasks$ | async) || (tasks$ | async); track task.id){
+            <tr>
+                <td>{{ $index +1 }}</td>
+                <td>
+                    <input type="checkbox" name="completionTask" id="completionTask" [(ngModel)]="task.isCompleted"
+                        (change)="onCheckboxChange(task)">
+                </td>
+                <td> {{task.name}} </td>
+                <td>
+                    <button type="button" (click)="deleteTask(task)">Delete</button>
+                </td>
+            </tr>
+            }@empty {
+            <td colspan="4" style="text-align: center;">Loading...</td>
+            }
+        </table>
+    </div>
+</section>
