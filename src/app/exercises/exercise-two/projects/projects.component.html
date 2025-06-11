@@ -1,0 +1,58 @@
+<header>
+    <h1>Projects</h1>
+</header>
+
+<section class="container">
+    <div class="add-project">
+        <h1>{{editMode ? 'Update' : 'Add'}} Project</h1>
+        <hr><br>
+        <form (submit)="f.valid ? onProjectAdd(): null" #f="ngForm">
+            <input type="text" name="project" id="project" placeholder="Enter Project Name"
+                [(ngModel)]="projectData.name" required>
+            <br><br>
+            <textarea type="text" name="description" id="description" placeholder="Enter Project Description"
+                [(ngModel)]="projectData.description"></textarea>
+            <br><br>
+            <ng-select name="users" id="users" [items]="users$ | async" bindLabel="name" bindValue="id"
+                [(ngModel)]="users" [multiple]="true" placeholder="Select users" (change)="onUserSelect($event)">
+            </ng-select>
+            <br><br>
+            <button type="submit"> {{editMode ? 'Update' : 'Add'}} </button>
+        </form>
+    </div>
+    <div class="project-list">
+        <h1>Projects</h1>
+        <hr><br>
+        <table>
+            <tr>
+                <th style="width: 10%">#</th>
+                <th style="width: 10%">Name</th>
+                <th style="width: 25%">Description</th>
+                <th style="width: 30%">Users</th>
+                <th style="width: 25%">Action</th>
+            </tr>
+            @for (project of (projects$ | async); track project.id){
+            <tr>
+                <td>{{ $index +1 }}</td>
+                <td>
+                    <a routerLink="./view/{{project.id}}">
+                        {{project.name}}
+                    </a>
+                </td>
+                <td> {{project.description}} </td>
+                <td>
+                    @for (user of project.users; track user.id) {
+                    <span>{{ user.name }}, </span>
+                    }
+                </td>
+                <td>
+                    <button type="button" (click)="updateTask(project)">Update</button> &nbsp;
+                    <button type="button" (click)="deleteTask(project)">Delete</button>
+                </td>
+            </tr>
+            }@empty {
+            <td colspan="5" style="text-align: center;">Loading...</td>
+            }
+        </table>
+    </div>
+</section>

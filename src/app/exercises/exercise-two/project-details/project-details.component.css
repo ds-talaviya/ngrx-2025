@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.tasks {
+    width: 60%;
+}
+
+.users {
+    width: 49%;
+}

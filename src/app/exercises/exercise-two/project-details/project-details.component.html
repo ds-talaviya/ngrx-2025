@@ -1,0 +1,54 @@
+<header>
+    <h1>Project Details
+        {{id}}
+    </h1>
+</header>
+
+<section class="container">
+    <div class="tasks">
+        <h1>Tasks</h1>
+        <hr><br>
+        <table>
+            <tr>
+                <th style="width: 10%">#</th>
+                <th style="width: 20%">Title</th>
+                <th style="width: 20%">description</th>
+                <th style="width: 10%">Due Date</th>
+                <th style="width: 10%">priority</th>
+                <th style="width: 10%">status</th>
+            </tr>
+            @for (task of (tasks$ | async); track task.id){
+            <tr>
+                <td>{{ $index +1 }}</td>
+                <td> {{task.title}} </td>
+                <td> {{task.description}} </td>
+                <td> {{task.dueDate | date}} </td>
+                <td> {{task.priority | titlecase}} </td>
+                <td> {{task.status | titlecase}} </td>
+            </tr>
+            }@empty {
+            <td colspan="8" style="text-align: center;">Loading...</td>
+            }
+        </table>
+    </div>
+    <div class="users">
+        <h1>Users</h1>
+        <hr><br>
+        <table>
+            <tr>
+                <th style="width: 10%">#</th>
+                <th style="width: 30%">Name</th>
+                <th style="width: 35%">Email</th>
+            </tr>
+            @for (user of (users$ | async); track user.id){
+            <tr>
+                <td>{{ $index +1 }}</td>
+                <td> {{user.name}} </td>
+                <td> {{user.email}} </td>
+            </tr>
+            }@empty {
+            <td colspan="4" style="text-align: center;">Loading...</td>
+            }
+        </table>
+    </div>
+</section>

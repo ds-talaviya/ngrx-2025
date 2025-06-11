@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.add-project {
+    width: 40%;
+}
+
+.add-project input,
+textarea,
+select {
+    width: 100%;
+}
+
+.project-list {
+    width: 58%;
+}

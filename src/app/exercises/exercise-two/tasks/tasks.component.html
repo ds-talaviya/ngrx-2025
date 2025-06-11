@@ -1,0 +1,72 @@
+<header>
+    <h1>Tasks</h1>
+</header>
+
+<section class="container">
+    <div class="add-project">
+        <h1>{{isEditMode ? 'Update' : 'Add'}} Task</h1>
+        <hr><br>
+        <form (submit)="f.valid ? onTaskAdd() : null" #f="ngForm">
+            <input type="text" name="title" id="title" placeholder="Enter Title" [(ngModel)]="taskData.title" required>
+            <br><br>
+            <textarea type="text" name="description" id="description" placeholder="Enter Description"
+                [(ngModel)]="taskData.description"></textarea>
+            <br><br>
+            <ng-select name="project" id="project" [items]="projects$ | async" bindLabel="name" bindValue="id"
+                [(ngModel)]="project" [multiple]="false" placeholder="Select Project"
+                (change)="onSelectProject();onProjectSelect($event);" required>
+            </ng-select>
+            <br><br>
+            <ng-select name="users" id="users" [items]="projectUsers" bindLabel="name" bindValue="id" [(ngModel)]="user"
+                [multiple]="false" placeholder="Select users" (change)="onUserSelect($event)">
+            </ng-select>
+            <br><br>
+            <ng-select name="priority" id="priority" [items]="priorityList" bindLabel="name" bindValue="value"
+                [(ngModel)]="taskData.priority" [multiple]="false" placeholder="Select Priority" required>
+            </ng-select>
+            <br><br>
+            @if (isEditMode) {
+            <ng-select name="status" id="status" [items]="statusList" bindLabel="name" bindValue="value"
+                [(ngModel)]="taskData.status" [multiple]="false" placeholder="Select Status">
+            </ng-select>
+            <br><br>
+            }
+            <input type="date" name="date" id="date" placeholder="Select Date" [(ngModel)]="taskData.dueDate" required>
+            <br><br>
+            <button type="submit"> {{isEditMode ? 'Update' : 'Add'}} </button>
+        </form>
+    </div>
+    <div class="project-list">
+        <h1>Tasks</h1>
+        <hr><br>
+        <table>
+            <tr>
+                <th style="width: 10%">#</th>
+                <th style="width: 20%">Title</th>
+                <th style="width: 20%">description</th>
+                <th style="width: 10%">Project</th>
+                <th style="width: 10%">Due Date</th>
+                <th style="width: 10%">priority</th>
+                <th style="width: 10%">status</th>
+                <th style="width: 10%">Action</th>
+            </tr>
+            @for (task of (tasks$ | async); track task.id){
+            <tr>
+                <td>{{ $index +1 }}</td>
+                <td> {{task.title}} </td>
+                <td> {{task.description}} </td>
+                <td> {{task.project.name}} </td>
+                <td> {{task.dueDate | date}} </td>
+                <td> {{task.priority | titlecase}} </td>
+                <td> {{task.status | titlecase}} </td>
+                <td>
+                    <button type="button" (click)="updateTask(task)">Update</button>
+                    <button type="button" (click)="deleteTask(task)">Delete</button>
+                </td>
+            </tr>
+            }@empty {
+            <td colspan="8" style="text-align: center;">Loading...</td>
+            }
+        </table>
+    </div>
+</section>

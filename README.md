@@ -1,27 +1,64 @@
-# ngrx-starter
+Actions – Dispatch intent.
+Reducers – Pure functions to change state.
+Selectors – Read state.
+Effects – Handle side effects (e.g., API calls).
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.3.
+📘 What to Learn Next
 
-## Development server
+1. Feature State Modules
+Organizing NgRx state by feature module
+StoreModule.forFeature()
+EffectsModule.forFeature()
+This is key in scalable apps (lazy-loaded modules especially).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+2. Entity State (NgRx Entity)
+Managing collections (e.g. list of users/products) easily
+Simplifies reducers/selectors for CRUD
+Uses adapter: createEntityAdapter()
+const adapter = createEntityAdapter<Product>();
 
-## Code scaffolding
+3. Router Store
+Connect Angular Router state with NgRx
+Access route params in selectors
+Dispatch navigation actions
+npm install @ngrx/router-store
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+4. NgRx Signals (if using Angular v17+ with Signals)
+Reactive programming with Signals integration
+Explore @ngrx/signals package
 
-## Build
+5. DevTools / Time Travel Debugging
+Integrate with Redux DevTools Extension
+npm install @ngrx/store-devtools
+StoreDevtoolsModule.instrument({ maxAge: 25 })
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+6. Immutability Best Practices
+Deep understanding of immutable update patterns
+Use immer, spread, or helper functions.
 
-## Running unit tests
+7. Testing in NgRx
+How to test:
+Actions
+Reducers (pure functions – easiest)
+Effects (with provideMockActions)
+Selectors
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+8. NgRx Component Store (alternative to global store)
+For local state in components/services
+Simpler, more focused state management for isolated parts.
+npm install @ngrx/component-store
 
-## Running end-to-end tests
+9. Hydration / Persistence
+Save and load store to/from localStorage
+Use custom MetaReducers or libraries like ngrx-store-localstorage.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+10. NgRx Schematics (optional)
+Auto-generate boilerplate
+ng generate store --name=products --module=app
+Bonus (if time permits):
+Custom Meta-Reducers (e.g., logging, error handling globally)
+Lazy loading store/effects
+NgRx Data (experimental) – abstraction over Entity & Effects
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+99090 21667
+nilay maheta gastrologiest zydus sarkhej

@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.add-user {
+    width: 35%;
+}
+
+.add-user input {
+    width: 100%;
+}
+
+.user-list {
+    width: 58%;
+}

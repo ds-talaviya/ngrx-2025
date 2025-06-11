@@ -9,6 +9,9 @@ import { groceryReducer } from './store/reducers/grocery.reducer';
 import { bucketReducer } from './store/reducers/bucket.reducer';
 import { GroceryEffects } from './store/effects/grocery.effect';
 import { taskReducer } from './exercises/exercise-one/store/task.reducer';
+import { userReducer } from './exercises/exercise-two/store/user.reducer';
+import { projectReducer } from './exercises/exercise-two/store/project.reducer';
+import { tasksReducer } from './exercises/exercise-two/store/task.reducer';
 
 
 export const appConfig: ApplicationConfig = {
@@ -19,7 +22,10 @@ export const appConfig: ApplicationConfig = {
     provideStore({
       groceries: groceryReducer,
       bucket: bucketReducer,
-      task: taskReducer
+      task: taskReducer,
+      users: userReducer,
+      projects: projectReducer,
+      tasks: tasksReducer
     }),
     provideEffects(
       GroceryEffects
