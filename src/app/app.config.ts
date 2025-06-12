@@ -12,6 +12,8 @@ import { taskReducer } from './exercises/exercise-one/store/task.reducer';
 import { userReducer } from './exercises/exercise-two/store/user.reducer';
 import { projectReducer } from './exercises/exercise-two/store/project.reducer';
 import { tasksReducer } from './exercises/exercise-two/store/task.reducer';
+import { effectUserReducer } from './exercises/exercise-three/store/user.reducer';
+import { UserEffect } from './exercises/exercise-three/store/user.effect';
 
 
 export const appConfig: ApplicationConfig = {
@@ -25,10 +27,12 @@ export const appConfig: ApplicationConfig = {
       task: taskReducer,
       users: userReducer,
       projects: projectReducer,
-      tasks: tasksReducer
+      tasks: tasksReducer,
+      effectUsers: effectUserReducer
     }),
     provideEffects(
-      GroceryEffects
+      GroceryEffects,
+      UserEffect
     ),
     provideStoreDevtools({
 

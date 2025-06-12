@@ -20,5 +20,17 @@
       "name": "doritos",
       "type": "snacks"
     }
+  ],
+  "users": [
+    {
+      "id": "188d",
+      "name": "test 1",
+      "mobile": 918409843
+    },
+    {
+      "id": "0906",
+      "name": "test 2",
+      "mobile": 324842092
+    }
   ]
 }

@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    gap: 2rem;
+    height: 70vh;
+    margin-top: 20px;
+}
+
+.add-data {
+    width: 40%;
+}
+
+.list {
+    width: 58%;
+    border-left: 1px solid black;
+    padding: 0 0.5rem;
+}

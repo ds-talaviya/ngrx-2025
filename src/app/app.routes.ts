@@ -7,6 +7,7 @@ import { ProjectsComponent } from './exercises/exercise-two/projects/projects.co
 import { TasksComponent } from './exercises/exercise-two/tasks/tasks.component';
 import { UsersComponent } from './exercises/exercise-two/users/users.component';
 import { ProjectDetailsComponent } from './exercises/exercise-two/project-details/project-details.component';
+import { ExerciseThreeComponent } from './exercises/exercise-three/exercise-three.component';
 
 export const routes: Routes = [
     {
@@ -52,6 +53,10 @@ export const routes: Routes = [
                         component: UsersComponent
                     }
                 ]
+            },
+            {
+                path: 'three',
+                component: ExerciseThreeComponent
             }
         ]
     }
