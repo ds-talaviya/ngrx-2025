@@ -6,6 +6,7 @@ import { Note } from "../model/note";
 import { ApiService } from "../api.service";
 import { ToastrService } from "ngx-toastr";
 import { LoaderService } from "../../../../loader.service";
+import { effectWithLoader } from "../with-loader.operator";
 
 @Injectable()
 
@@ -18,21 +19,20 @@ export class NoteEffect {
 
     loadNotes$ = createEffect(() => this.actions$.pipe(
         ofType(getNotes),
-        tap(() => this.loaderService.show()),
         exhaustMap(() =>
             this.service.getAllNotes().pipe(
+                effectWithLoader(this.loaderService),
                 map((notes: Note[]) => getNotesSuccess({ payload: notes })),
-                catchError(() => of(getNotesFailed({ payload: [] }))),
-                finalize(() => this.loaderService.hide())
+                catchError(() => of(getNotesFailed({ payload: [] })))
             )
         )
     ));
 
     addNote$ = createEffect(() => this.actions$.pipe(
         ofType(addNote.noteAdding),
-        tap(() => this.loaderService.show()),
         exhaustMap(({ payload }) =>
             this.service.addNote(payload).pipe(
+                effectWithLoader(this.loaderService),
                 map(() => addNote.noteAddedSuccess()),
                 catchError((error) => of(addNote.noteAddedFailed()))
             )
@@ -41,9 +41,9 @@ export class NoteEffect {
 
     updateNote$ = createEffect(() => this.actions$.pipe(
         ofType(updateNote.noteUpdating),
-        tap(() => this.loaderService.show()),
         exhaustMap(({ payload }) =>
             this.service.updateNote(payload).pipe(
+                effectWithLoader(this.loaderService),
                 map(() => updateNote.noteUpdatedSuccess()),
                 catchError((error) => of(updateNote.noteUpdatedFailed()))
             )
@@ -52,9 +52,9 @@ export class NoteEffect {
 
     deleteNote$ = createEffect(() => this.actions$.pipe(
         ofType(deleteNote.noteDeleting),
-        tap(() => this.loaderService.show()),
         exhaustMap(({ payload }) =>
             this.service.deleteNote(payload).pipe(
+                effectWithLoader(this.loaderService),
                 map(() => deleteNote.noteDeletedSuccess()),
                 catchError((error) => of(deleteNote.noteDeletedFailed()))
             )
@@ -65,7 +65,6 @@ export class NoteEffect {
         ofType(addNote.noteAddedSuccess),
         tap(() => {
             this.toastr.success('Note added successfully!', 'Success!');
-            this.loaderService.hide();
         })
     ), { dispatch: false });
 
@@ -73,7 +72,6 @@ export class NoteEffect {
         ofType(updateNote.noteUpdatedSuccess),
         tap(() => {
             this.toastr.success('Note updated successfully!', 'Success!');
-            this.loaderService.hide();
         })
     ), { dispatch: false })
 
@@ -81,7 +79,6 @@ export class NoteEffect {
         ofType(deleteNote.noteDeletedSuccess),
         tap(() => {
             this.toastr.success('Note deleted successfully!', 'Success!')
-            this.loaderService.hide();
         })
     ), { dispatch: false })
 
@@ -89,7 +86,6 @@ export class NoteEffect {
         ofType(addNote.noteAddedFailed),
         tap(() => {
             this.toastr.error('Error while adding Note!', 'Failed!')
-            this.loaderService.hide();
         })
     ), { dispatch: false })
 
@@ -97,7 +93,6 @@ export class NoteEffect {
         ofType(updateNote.noteUpdatedFailed),
         tap(() => {
             this.toastr.error('Error while updating Note!', 'Failed!')
-            this.loaderService.hide();
         })
     ), { dispatch: false })
 
@@ -105,7 +100,6 @@ export class NoteEffect {
         ofType(deleteNote.noteDeletedFailed),
         tap(() => {
             this.toastr.error('Error while deleting Note!', 'Failed!')
-            this.loaderService.hide();
         })
     ), { dispatch: false })
 

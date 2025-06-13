@@ -9,10 +9,10 @@ export class LoaderService {
     loading$ = this.loadingSubject.asObservable();
 
     show() {
-        setTimeout(() => this.loadingSubject.next(true), 0);
+        this.loadingSubject.next(true);
     }
 
     hide() {
-        setTimeout(() => this.loadingSubject.next(false), 0);
+        this.loadingSubject.next(false);
     }
 }
