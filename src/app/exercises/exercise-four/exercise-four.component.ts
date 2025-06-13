@@ -44,7 +44,7 @@ export class ExerciseFourComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     let data = structuredClone(this.formModel);
-    data.tags = data.tags.split(',').map((tag: any) => tag.trim());
+    data.tags = data.tags ? data.tags.split(',').map((tag: any) => tag.trim()) : [];
     if (this.formModel.id) {
       this.store.dispatch(updateNote.noteUpdating({ payload: data }));
     } else {

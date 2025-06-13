@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { addNote, deleteNote, getNotes, getNotesFailed, getNotesSuccess, updateNote } from "./note.action";
-import { catchError, exhaustMap, finalize, map, of, tap } from "rxjs";
+import { catchError, concatMap, exhaustMap, finalize, map, mergeMap, of, switchMap, tap } from "rxjs";
 import { Note } from "../model/note";
 import { ApiService } from "../api.service";
 import { ToastrService } from "ngx-toastr";
@@ -19,6 +19,7 @@ export class NoteEffect {
 
     loadNotes$ = createEffect(() => this.actions$.pipe(
         ofType(getNotes),
+        // ignore new api, if existing is working
         exhaustMap(() =>
             this.service.getAllNotes().pipe(
                 effectWithLoader(this.loaderService),
@@ -30,7 +31,8 @@ export class NoteEffect {
 
     addNote$ = createEffect(() => this.actions$.pipe(
         ofType(addNote.noteAdding),
-        exhaustMap(({ payload }) =>
+        // parallel api call, no one cancel
+        mergeMap(({ payload }) =>
             this.service.addNote(payload).pipe(
                 effectWithLoader(this.loaderService),
                 map(() => addNote.noteAddedSuccess()),
@@ -41,7 +43,8 @@ export class NoteEffect {
 
     updateNote$ = createEffect(() => this.actions$.pipe(
         ofType(updateNote.noteUpdating),
-        exhaustMap(({ payload }) =>
+        // if same data updates again same api call then first api should be cancel
+        switchMap(({ payload }) =>
             this.service.updateNote(payload).pipe(
                 effectWithLoader(this.loaderService),
                 map(() => updateNote.noteUpdatedSuccess()),
@@ -52,7 +55,8 @@ export class NoteEffect {
 
     deleteNote$ = createEffect(() => this.actions$.pipe(
         ofType(deleteNote.noteDeleting),
-        exhaustMap(({ payload }) =>
+        // mergeMap used as we don't want to ignore or cancel new or old rq
+        mergeMap(({ payload }) =>
             this.service.deleteNote(payload).pipe(
                 effectWithLoader(this.loaderService),
                 map(() => deleteNote.noteDeletedSuccess()),
