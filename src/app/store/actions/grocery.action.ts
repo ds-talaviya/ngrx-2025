@@ -12,3 +12,14 @@ export const groceryAction = createActionGroup({
         'Load Groceries failed': emptyProps()
     }
 })
+// separate actions
+// export const loadGroceries = createAction(
+//     '[Groceries] Load'
+// )
+// export const loadGroceriesSuccess = createAction(
+//     '[Groceries] Success',
+//     props<{ payload: Grocery[] }>()
+// )
+// export const loadGroceriesFailed = createAction(
+//     '[Groceries] Failed'
+// )

@@ -23,25 +23,22 @@ Access route params in selectors
 Dispatch navigation actions
 npm install @ngrx/router-store
 
-4. NgRx Signals (if using Angular v17+ with Signals)
-Reactive programming with Signals integration
-Explore @ngrx/signals package
+4. Immutability Best Practices
+Deep understanding of immutable update patterns
+Use immer, spread, or helper functions.
 
 5. DevTools / Time Travel Debugging
 Integrate with Redux DevTools Extension
 npm install @ngrx/store-devtools
 StoreDevtoolsModule.instrument({ maxAge: 25 })
 
-6. Immutability Best Practices
-Deep understanding of immutable update patterns
-Use immer, spread, or helper functions.
+6. NgRx Schematics (optional)
+Auto-generate boilerplate
+ng generate store --name=products --module=app
 
-7. Testing in NgRx
-How to test:
-Actions
-Reducers (pure functions – easiest)
-Effects (with provideMockActions)
-Selectors
+7. NgRx Signals (if using Angular v17+ with Signals)
+Reactive programming with Signals integration
+Explore @ngrx/signals package
 
 8. NgRx Component Store (alternative to global store)
 For local state in components/services
@@ -52,9 +49,13 @@ npm install @ngrx/component-store
 Save and load store to/from localStorage
 Use custom MetaReducers or libraries like ngrx-store-localstorage.
 
-10. NgRx Schematics (optional)
-Auto-generate boilerplate
-ng generate store --name=products --module=app
+10. Testing in NgRx
+How to test:
+Actions
+Reducers (pure functions – easiest)
+Effects (with provideMockActions) (Effects unit testing)
+Selectors
+
 Bonus (if time permits):
 Custom Meta-Reducers (e.g., logging, error handling globally)
 Lazy loading store/effects
