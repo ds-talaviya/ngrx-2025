@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    gap: 2rem;
+    height: 70vh;
+    margin-top: 20px;
+}
+
+.add-data {
+    width: 30%;
+}
+
+.list {
+    width: 68%;
+    border-left: 1px solid black;
+    padding: 0 0.5rem;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+}

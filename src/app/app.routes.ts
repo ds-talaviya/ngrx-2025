@@ -8,6 +8,7 @@ import { TasksComponent } from './exercises/exercise-two/tasks/tasks.component';
 import { UsersComponent } from './exercises/exercise-two/users/users.component';
 import { ProjectDetailsComponent } from './exercises/exercise-two/project-details/project-details.component';
 import { ExerciseThreeComponent } from './exercises/exercise-three/exercise-three.component';
+import { ExerciseFourComponent } from './exercises/exercise-four/exercise-four.component';
 
 export const routes: Routes = [
     {
@@ -57,6 +58,10 @@ export const routes: Routes = [
             {
                 path: 'three',
                 component: ExerciseThreeComponent
+            },
+            {
+                path: 'four',
+                component: ExerciseFourComponent
             }
         ]
     }

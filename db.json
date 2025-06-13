@@ -1,22 +1,22 @@
 {
   "groceries": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Milk",
       "type": "dairy"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Banana",
       "type": "fruit"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "lays chips",
       "type": "snacks"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "doritos",
       "type": "snacks"
     }
@@ -31,6 +31,41 @@
       "id": "0906",
       "name": "test 2",
       "mobile": 324842092
+    }
+  ],
+  "notes": [
+    {
+      "id": "f874",
+      "title": "test 2",
+      "content": "test 2",
+      "tags": [
+        "test112",
+        "test12",
+        "test 2"
+      ],
+      "createdAt": "2025-06-12T11:52:49.878Z"
+    },
+    {
+      "id": "1ea8",
+      "title": "test",
+      "content": "test",
+      "tags": [
+        "test",
+        "test1",
+        "test11",
+        "test 2"
+      ],
+      "createdAt": "2025-06-12T12:20:34.802Z"
+    },
+    {
+      "id": "b99a",
+      "title": "test 3",
+      "content": "test 3",
+      "tags": [
+        "test 3",
+        "test 33"
+      ],
+      "createdAt": "2025-06-12T12:38:36.156Z"
     }
   ]
 }
