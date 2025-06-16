@@ -1,14 +1,16 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { ExercisesComponent } from './exercises/exercises.component';
-import { ExerciseOneComponent } from './exercises/exercise-one/exercise-one.component';
-import { ExerciseTwoComponent } from './exercises/exercise-two/exercise-two.component';
-import { ProjectsComponent } from './exercises/exercise-two/projects/projects.component';
-import { TasksComponent } from './exercises/exercise-two/tasks/tasks.component';
-import { UsersComponent } from './exercises/exercise-two/users/users.component';
-import { ProjectDetailsComponent } from './exercises/exercise-two/project-details/project-details.component';
-import { ExerciseThreeComponent } from './exercises/exercise-three/exercise-three.component';
-import { ExerciseFourComponent } from './exercises/exercise-four/exercise-four.component';
+import { provideState } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
+
+import { taskReducer } from './exercises/exercise-one/store/task.reducer';
+import { userReducer } from './exercises/exercise-two/store/user.reducer';
+import { projectReducer } from './exercises/exercise-two/store/project.reducer';
+import { tasksReducer } from './exercises/exercise-two/store/task.reducer';
+import { effectUserReducer } from './exercises/exercise-three/store/user.reducer';
+import { UserEffect } from './exercises/exercise-three/store/user.effect';
+import { noteReducer } from './exercises/exercise-four/store/note.reducer';
+import { NoteEffect } from './exercises/exercise-four/store/note.effect';
 
 export const routes: Routes = [
     {
@@ -17,7 +19,8 @@ export const routes: Routes = [
     },
     {
         path: 'exercises',
-        component: ExercisesComponent,
+        loadComponent: () =>
+            import('./exercises/exercises.component').then((m) => m.ExercisesComponent),
         children: [
             {
                 path: '',
@@ -26,11 +29,16 @@ export const routes: Routes = [
             },
             {
                 path: 'one',
-                component: ExerciseOneComponent
+                loadComponent: () =>
+                    import('./exercises/exercise-one/exercise-one.component').then((m) => m.ExerciseOneComponent),
+                providers: [
+                    provideState('task', taskReducer)
+                ]
             },
             {
                 path: 'two',
-                component: ExerciseTwoComponent,
+                loadComponent: () =>
+                    import('./exercises/exercise-two/exercise-two.component').then((m) => m.ExerciseTwoComponent),
                 children: [
                     {
                         path: '',
@@ -39,29 +47,52 @@ export const routes: Routes = [
                     },
                     {
                         path: 'projects',
-                        component: ProjectsComponent
+                        loadComponent: () =>
+                            import('./exercises/exercise-two/projects/projects.component').then((m) => m.ProjectsComponent),
+                        providers: [
+                            provideState('projects', projectReducer)
+                        ]
                     },
                     {
                         path: 'projects/view/:id',
-                        component: ProjectDetailsComponent
+                        loadComponent: () =>
+                            import('./exercises/exercise-two/project-details/project-details.component').then((m) => m.ProjectDetailsComponent),
                     },
                     {
                         path: 'tasks',
-                        component: TasksComponent
+                        loadComponent: () =>
+                            import('./exercises/exercise-two/tasks/tasks.component').then((m) => m.TasksComponent),
+                        providers: [
+                            provideState('tasks', tasksReducer)
+                        ]
                     },
                     {
                         path: 'users',
-                        component: UsersComponent
+                        loadComponent: () =>
+                            import('./exercises/exercise-two/users/users.component').then((m) => m.UsersComponent),
+                        providers: [
+                            provideState('users', userReducer)
+                        ]
                     }
                 ]
             },
             {
                 path: 'three',
-                component: ExerciseThreeComponent
+                loadComponent: () =>
+                    import('./exercises/exercise-three/exercise-three.component').then((m) => m.ExerciseThreeComponent),
+                providers: [
+                    provideState('effectUsers', effectUserReducer),
+                    provideEffects(UserEffect)
+                ]
             },
             {
                 path: 'four',
-                component: ExerciseFourComponent
+                loadComponent: () =>
+                    import('./exercises/exercise-four/exercise-four.component').then((m) => m.ExerciseFourComponent),
+                providers: [
+                    provideState('notes', noteReducer),
+                    provideEffects(NoteEffect)
+                ]
             }
         ]
     }

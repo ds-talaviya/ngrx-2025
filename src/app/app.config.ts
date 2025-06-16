@@ -30,18 +30,10 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideStore({
       groceries: groceryReducer,
-      bucket: bucketReducer,
-      task: taskReducer,
-      users: userReducer,
-      projects: projectReducer,
-      tasks: tasksReducer,
-      effectUsers: effectUserReducer,
-      notes: noteReducer
+      bucket: bucketReducer
     }),
     provideEffects(
-      GroceryEffects,
-      UserEffect,
-      NoteEffect
+      GroceryEffects
     ),
     provideStoreDevtools({
 
