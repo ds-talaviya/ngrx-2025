@@ -9,16 +9,20 @@
     <div>
         <ul class="menu">
             <li class="item">
-                <a routerLink="./one">Exercise 1</a>
+                <a routerLink="./one" title="Action Reducer Selector">1-(ARS)</a>
             </li>
             <li class="item">
-                <a routerLink="./two">Exercise 2</a>
+                <a routerLink="./two" title="Action Reducer Selector">2-(ARS)</a>
             </li>
             <li class="item">
-                <a routerLink="./three">Exercise 3</a>
+                <a routerLink="./three" title="Action Effect Reducer Selector">3-(AERS)</a>
             </li>
             <li class="item">
-                <a routerLink="./four">Exercise 4</a>
+                <a routerLink="./four" title="Action Effect Reducer Selector">4-(AERS)</a>
+            </li>
+            <li class="item">
+                <a [routerLink]="['./five', 123]" [queryParams]="{tab: 'user', id: 123}" [fragment]="'team'"
+                    title="Router-Store">5-(Rs)</a>
             </li>
         </ul>
     </div>

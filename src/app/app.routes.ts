@@ -93,6 +93,12 @@ export const routes: Routes = [
                     provideState('notes', noteReducer),
                     provideEffects(NoteEffect)
                 ]
+            },
+            {
+                path: 'five/:userId',
+                loadComponent: () =>
+                    import('./exercises/exercise-five/exercise-five.component').then((m) => m.ExerciseFiveComponent),
+                title: 'Router Store'
             }
         ]
     }

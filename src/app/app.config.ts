@@ -11,15 +11,8 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { groceryReducer } from './store/reducers/grocery.reducer';
 import { bucketReducer } from './store/reducers/bucket.reducer';
 import { GroceryEffects } from './store/effects/grocery.effect';
-import { taskReducer } from './exercises/exercise-one/store/task.reducer';
-import { userReducer } from './exercises/exercise-two/store/user.reducer';
-import { projectReducer } from './exercises/exercise-two/store/project.reducer';
-import { tasksReducer } from './exercises/exercise-two/store/task.reducer';
-import { effectUserReducer } from './exercises/exercise-three/store/user.reducer';
-import { UserEffect } from './exercises/exercise-three/store/user.effect';
-import { noteReducer } from './exercises/exercise-four/store/note.reducer';
-import { NoteEffect } from './exercises/exercise-four/store/note.effect';
 import { NgxLoadingModule } from 'ngx-loading';
+import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 
 
 export const appConfig: ApplicationConfig = {
@@ -30,14 +23,14 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideStore({
       groceries: groceryReducer,
-      bucket: bucketReducer
+      bucket: bucketReducer,
+      router: routerReducer
     }),
     provideEffects(
       GroceryEffects
     ),
-    provideStoreDevtools({
-
-    }),
+    provideStoreDevtools({}),
+    provideRouterStore(),
     provideToastr(),
     importProvidersFrom(NgxLoadingModule.forRoot({}))
   ]
