@@ -11,17 +11,17 @@ StoreModule.forFeature()
 EffectsModule.forFeature()
 This is key in scalable apps (lazy-loaded modules especially).
 
-2. Entity State (NgRx Entity)
-Managing collections (e.g. list of users/products) easily
-Simplifies reducers/selectors for CRUD
-Uses adapter: createEntityAdapter()
-const adapter = createEntityAdapter<Product>();
-
-3. Router Store
+2. Router Store
 Connect Angular Router state with NgRx
 Access route params in selectors
 Dispatch navigation actions
 npm install @ngrx/router-store
+
+3. Entity State (NgRx Entity)
+Managing collections (e.g. list of users/products) easily
+Simplifies reducers/selectors for CRUD
+Uses adapter: createEntityAdapter()
+const adapter = createEntityAdapter<Product>();
 
 4. Immutability Best Practices
 Deep understanding of immutable update patterns

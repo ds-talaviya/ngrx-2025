@@ -11,6 +11,8 @@ import { effectUserReducer } from './exercises/exercise-three/store/user.reducer
 import { UserEffect } from './exercises/exercise-three/store/user.effect';
 import { noteReducer } from './exercises/exercise-four/store/note.reducer';
 import { NoteEffect } from './exercises/exercise-four/store/note.effect';
+import { UserEffects } from './exercises/exercise-six/store/user.effects';
+import { e6userReducer } from './exercises/exercise-six/store/user.reducer';
 
 export const routes: Routes = [
     {
@@ -99,6 +101,15 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./exercises/exercise-five/exercise-five.component').then((m) => m.ExerciseFiveComponent),
                 title: 'Router Store'
+            },
+            {
+                path: 'six',
+                loadComponent: () =>
+                    import('./exercises/exercise-six/exercise-six.component').then((m) => m.ExerciseSixComponent),
+                providers: [
+                    provideState('users', e6userReducer),
+                    provideEffects(UserEffects)
+                ]
             }
         ]
     }
