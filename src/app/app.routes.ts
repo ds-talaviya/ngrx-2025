@@ -13,6 +13,7 @@ import { noteReducer } from './exercises/exercise-four/store/note.reducer';
 import { NoteEffect } from './exercises/exercise-four/store/note.effect';
 import { UserEffects } from './exercises/exercise-six/store/user.effects';
 import { e6userReducer } from './exercises/exercise-six/store/user.reducer';
+import { productReducer } from './exercises/exercise-seven/store/product.reducer';
 
 export const routes: Routes = [
     {
@@ -109,6 +110,14 @@ export const routes: Routes = [
                 providers: [
                     provideState('users', e6userReducer),
                     provideEffects(UserEffects)
+                ]
+            },
+            {
+                path: 'seven',
+                loadComponent: () =>
+                    import('./exercises/exercise-seven/exercise-seven.component').then((m) => m.ExerciseSevenComponent),
+                providers: [
+                    provideState('products', productReducer)
                 ]
             }
         ]

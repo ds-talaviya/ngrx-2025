@@ -1,0 +1,46 @@
+<h1>Effect Example</h1>
+<section class="container">
+    <div class="add-data">
+        <h1>Add Data</h1>
+        <hr><br>
+        <form (ngSubmit)="onSubmit()" #groceryForm="ngForm">
+            <input type="text" name="name" [(ngModel)]="formModel.name" placeholder="Name" required /> &nbsp;
+            <br><br>
+            <button type="submit">
+                {{ formModel.productId ? 'Update' : 'Add' }}
+            </button>
+
+            @if (formModel.productId) {
+            &nbsp; <button type="button" (click)="resetForm()">Cancel</button>
+            }
+
+            <br><br><br>
+            Entities Stored: {{entitiesStored() | json}} <br><br>
+            Stored Product Ids: {{allProductIds()}}
+        </form>
+    </div>
+
+    <div class="list">
+        <h1>Products ({{noOfProducts()}})</h1>
+        <hr><br>
+        <table>
+            <tr>
+                <th style="width: 10%">#</th>
+                <th style="width: 65%">Name</th>
+                <th style="width: 25%">Action</th>
+            </tr>
+            @for (item of products(); track item.productId){
+            <tr>
+                <td>{{ $index +1 }}</td>
+                <td> {{item.name}} </td>
+                <td>
+                    <button type="button" (click)="editItem(item)">Update</button> &nbsp;
+                    <button type="button" (click)="deleteItem(item)">Delete</button>
+                </td>
+            </tr>
+            }@empty {
+            <td colspan="8" style="text-align: center;">Loading...</td>
+            }
+        </table>
+    </div>
+</section>
