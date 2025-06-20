@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ProductAction } from './store/product.action';
 import { Product } from './store/product';
-import { productIds, selectAllEntity, selectAllProduct, totalProducts } from './store/product.selector';
+import { productIds, selectAllEntity, selectAllProduct, selectProductById, totalProducts } from './store/product.selector';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -25,6 +25,10 @@ export class ExerciseSevenComponent {
     this.noOfProducts = store.selectSignal(totalProducts)
     this.entitiesStored = store.selectSignal(selectAllEntity)
     this.allProductIds = store.selectSignal(productIds)
+    // this how you get particular data
+    store.select(selectProductById('12')).subscribe((data) => {
+      console.log(data)
+    })
   }
 
   ngOnInit(): void {
