@@ -23,16 +23,16 @@ Simplifies reducers/selectors for CRUD
 Uses adapter: createEntityAdapter()
 const adapter = createEntityAdapter<Product>();
 
-4. Immutability Best Practices
+4. Immutability Best Practices (IGNORED)
 Deep understanding of immutable update patterns
 Use immer, spread, or helper functions.
 
-5. DevTools / Time Travel Debugging
+5. DevTools / Time Travel Debugging (IGNORED)
 Integrate with Redux DevTools Extension
 npm install @ngrx/store-devtools
 StoreDevtoolsModule.instrument({ maxAge: 25 })
 
-6. NgRx Schematics (optional)
+6. NgRx Schematics
 Auto-generate boilerplate
 ng generate store --name=products --module=app
 
