@@ -1,0 +1,18 @@
+<h2>Products (Component Store)</h2>
+
+<button (click)="store.loadProducts()">Load</button>
+@if (store.loading$ | async) {
+<p>Loading...</p>
+}
+
+<ul>
+    @for (p of store.products$ | async; track $index) {
+    <li>
+        {{ p.name }}
+        <button (click)="store.deleteProduct(p.productId)">Delete</button>
+    </li>
+    }
+</ul>
+
+<input [(ngModel)]="name" placeholder="New Product Name" />
+<button (click)="add()">Add Product</button>

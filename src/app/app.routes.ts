@@ -119,6 +119,12 @@ export const routes: Routes = [
                 providers: [
                     provideState('products', productReducer)
                 ]
+            },
+            {
+                path: 'eight',
+                loadComponent: () => {
+                    return import('./exercises/exercise-eight/exercise-eight.component').then((m) => m.ExerciseEightComponent)
+                }
             }
         ]
     }

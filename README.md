@@ -40,26 +40,24 @@ ng generate store --name=products --module=app
 Reactive programming with Signals integration
 Explore @ngrx/signals package
 
-8. NgRx Component Store (alternative to global store)
-For local state in components/services
-Simpler, more focused state management for isolated parts.
-npm install @ngrx/component-store
-
-9. Hydration / Persistence
-Save and load store to/from localStorage
-Use custom MetaReducers or libraries like ngrx-store-localstorage.
-
-10. Testing in NgRx
+8. Testing in NgRx (IGNORED)
 How to test:
 Actions
 Reducers (pure functions – easiest)
 Effects (with provideMockActions) (Effects unit testing)
 Selectors
 
-Bonus (if time permits):
-Custom Meta-Reducers (e.g., logging, error handling globally)
-Lazy loading store/effects
-NgRx Data (experimental) – abstraction over Entity & Effects
+9. NgRx Component Store (alternative to global store)
+For local state in components/services
+Simpler, more focused state management for isolated parts.
+npm install @ngrx/component-store
+
+10. Hydration / Persistence
+Save and load store to/from localStorage
+Use custom MetaReducers or libraries like ngrx-store-localstorage.
+
+11. Custom Meta-Reducers (e.g., logging, error handling globally)
+12. NgRx Data (experimental) – abstraction over Entity & Effects
 
 99090 21667
 nilay maheta gastrologiest zydus sarkhej
