@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="add-product">
+        <form (submit)="addProduct()">
+            <input type="text" name="name" id="name" placeholder="Enter Name" [(ngModel)]="productData.name"> <br><br>
+            <input type="number" name="stock" id="stock" placeholder="Enter Stock" [(ngModel)]="productData.stock">
+            <br><br>
+            <button type="submit"> {{productData.productId ? 'Update' : 'Add'}} </button>
+            @if (productData.productId) {
+            <button type="button" (click)="resetForm()"> Cancel </button>
+            }
+        </form>
+    </div>
+    <div class="product-list">
+        <table>
+            <tr>
+                <th style="width: 5%">#</th>
+                <th style="width: 50%">Name</th>
+                <th style="width: 20%">Stock</th>
+                <th style="width: 25%">Action</th>
+            </tr>
+            @for (item of products$ | async; track item.productId){
+            <tr>
+                <td>{{ $index +1 }}</td>
+                <td (click)="showDetails(item)"> <a href="javascript:;"> {{item.name}} </a></td>
+                <td> {{item.stock}} </td>
+                <td>
+                    <button type="button" (click)="editItem(item)">Update</button> &nbsp;
+                    <button type="button" (click)="deleteItem(item)">Delete</button>
+                </td>
+            </tr>
+            }@empty {
+            <td colspan="4" style="text-align: center;">
+                {{!!store.loading$ ? 'Loading....' : 'No Data Found'}}
+            </td>
+            }
+        </table>
+        <br><br>
+        <div>
+            {{productData$ | async | json}}
+        </div>
+    </div>
+</div>

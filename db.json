@@ -67,5 +67,19 @@
       ],
       "createdAt": "2025-06-12T12:38:36.156Z"
     }
+  ],
+  "products": [
+    {
+      "id": "091c",
+      "name": "test",
+      "stock": 12,
+      "productId": "1750765314881"
+    },
+    {
+      "id": "b4c6",
+      "name": "test 13",
+      "stock": 13,
+      "productId": "1750765322125"
+    }
   ]
 }

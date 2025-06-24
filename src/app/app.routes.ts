@@ -125,6 +125,11 @@ export const routes: Routes = [
                 loadComponent: () => {
                     return import('./exercises/exercise-eight/exercise-eight.component').then((m) => m.ExerciseEightComponent)
                 }
+            },
+            {
+                path: 'nine',
+                loadComponent: () =>
+                    import('./exercises/exercise-nine/exercise-nine.component').then((m) => m.ExerciseNineComponent)
             }
         ]
     }

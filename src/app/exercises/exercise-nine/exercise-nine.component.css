@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    gap: 2rem;
+}
+
+.add-product {
+    width: 35%;
+    border-right: 1px solid black;
+    height: 75vh;
+}
+
+.product-list{
+    width: 65%;
+}
