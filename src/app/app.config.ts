@@ -10,6 +10,7 @@ import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { localStorageSync } from 'ngrx-store-localstorage';
+import { EntityDataModule, DefaultDataServiceConfig } from '@ngrx/data';
 // local imports
 import { routes } from './app.routes';
 import { groceryReducer } from './store/reducers/grocery.reducer';
@@ -25,6 +26,24 @@ export function localStorageSyncReducer(reducer: any): any {
   })(reducer);
 }
 export const metaReducers: MetaReducer[] = [localStorageSyncReducer];
+
+// Registers metadata for the Student entity.
+export const entityConfig = {
+  entityMetadata: {
+    Student: {},
+  },
+  pluralNames: {
+    // if you don't below thing then for get students api call and for add, update, delete calls student
+    Student: 'student'
+  }
+};
+
+// Tells NgRx Data that API calls should be made to http://localhost:3000/.
+// All entity CRUD will happen at endpoints like /students.
+const defaultDataServiceConfig: DefaultDataServiceConfig = {
+  root: 'http://localhost:5000/',
+  timeout: 3000,
+};
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -42,6 +61,12 @@ export const appConfig: ApplicationConfig = {
     provideEffects(
       GroceryEffects
     ),
+    importProvidersFrom(
+      // EntityDataModule sets up entity-related logic like reducer, effects.
+      EntityDataModule.forRoot(entityConfig)
+    ),
+    // DefaultDataServiceConfig allows configuring API endpoint and timeout.
+    { provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig },
     provideStoreDevtools({}),
     provideRouterStore(),
     provideToastr(),

@@ -130,6 +130,11 @@ export const routes: Routes = [
                 path: 'nine',
                 loadComponent: () =>
                     import('./exercises/exercise-nine/exercise-nine.component').then((m) => m.ExerciseNineComponent)
+            },
+            {
+                path: 'ten',
+                loadComponent: () =>
+                    import('./exercises/exercise-ten/exercise-ten.component').then((m) => m.ExerciseTenComponent)
             }
         ]
     }

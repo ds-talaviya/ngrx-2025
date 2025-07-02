@@ -1,0 +1,15 @@
+<h2>Student List</h2>
+<ul>
+    @for (student of student(); track $index) {
+    <li>
+        {{ student.name }} ({{ student.age }} years old)
+        <button (click)="delete(student.id)">Delete</button>
+        <button (click)="update(student)">Update</button>
+    </li>
+    }
+</ul>
+
+<h3>Add Student</h3>
+<input [(ngModel)]="data.name" placeholder="Name" />
+<input [(ngModel)]="data.age" placeholder="Age" type="number" />
+<button (click)="save()">Add</button>
